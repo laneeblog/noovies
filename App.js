@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import AppLoading from 'expo-app-loading';
-import { Image, Text } from 'react-native';
+import { Image, Text, LogBox, StatusBar } from 'react-native';
 import { Asset } from 'expo-asset';
 import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import { NavigationContainer } from "@react-navigation/native"
 import Stack from './navigation/Stack';
+
+LogBox.ignoreLogs(['Remote debugger']);
+LogBox.ignoreLogs(["Accessing the 'state' property"]);
 
 // 이미지 미리 로드
 const cacheImages = (images) => images.map(image => {
@@ -33,9 +36,12 @@ export default function App() {
 
 
   return isReady ? (
-    <NavigationContainer>
-      <Stack />
-    </NavigationContainer>
+    <>
+      <NavigationContainer>
+        <Stack />
+      </NavigationContainer>
+      <StatusBar barStyle="light-content"></StatusBar>
+    </>
   )
     : (
       <AppLoading
