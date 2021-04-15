@@ -30,7 +30,7 @@ export default ({ navigation }) => {
 
 
     return (
-        <MoviesPresenter {...movies}></MoviesPresenter>
+        <MoviesPresenter refreshFn={getData} {...movies}></MoviesPresenter>
     )
 
 }
